@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>to do list</title>
+        <link href="todolist.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="carte">
+        <h1 id="gros-titre"> On fait quoi aujourd'hui?</h1>
+        <div id="zone-saisie">
+            <input type="text" id="tache" placeholder="entrez votre tache">
+            <button id="ajouter">Ajouter</button>
+        </div>
+        <ul id="liste"></ul>
+        <script> 
+            const input=document.getElementById("tache");
+            const bouton = document.getElementById("ajouter");
+            const list = document.getElementById("liste");
+            
+            bouton.addEventListener("click",()=>{
+                const text = input.value.trim();
+                if(text ==="") return;
+
+                const li = document.createElement("li");
+
+                const checkbox=document.createElement("input");
+                checkbox.type="checkbox";
+                checkbox.addEventListener("change", () => {
+                    li.classList.toggle("faite", checkbox.checked);
+                });
+                
+                const span= document.createElement("span");
+                span.textContent="" + text;
+
+                li.appendChild(checkbox);
+                li.appendChild(span);
+                liste.appendChild(li);
+
+                input.value="";
+            });
+        </script>
+        </div>
+        <script src="todolist.js"></script>
+    </body>
+</html>
